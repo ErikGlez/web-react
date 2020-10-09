@@ -6,6 +6,7 @@ import './assets/CSS/App.css';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 
 
 function hola(nombre){
@@ -21,15 +22,17 @@ function App() {
     <div className="App">
       <Header/>
       <Slider/>
-      
-
       <div className="center">
       <section id="content">
         <p>Todo el contenido aqui:</p>
+        {/*code*/}
       </section>
       <Sidebar/>
-      </div>
-      {/*code*/}
+      <div class="clearfix"></div>
+      </div> {/* fin div center */}
+      
+
+      <Footer/>
      
      
     </div>
