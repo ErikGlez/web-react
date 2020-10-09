@@ -1,11 +1,12 @@
 import React from 'react';
-import logo from './assets/images/logo.svg';
 import './assets/CSS/App.css'; 
 
 // Importar componentes
-import MiComponente from './components/MiComponente';
-import Peliculas from './components/Peliculas';
+
 import Header from './components/Header';
+import Slider from './components/Slider';
+import Sidebar from './components/Sidebar';
+
 
 function hola(nombre){
 
@@ -15,29 +16,21 @@ function hola(nombre){
 }
 
 function App() {
-  var nombre = "React";
+  
   return (
     <div className="App">
       <Header/>
+      <Slider/>
+      
 
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         {hola(nombre)} 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <section className="componentes"> 
-          <MiComponente />
-          <Peliculas/>
+      <div className="center">
+      <section id="content">
+        <p>Todo el contenido aqui:</p>
       </section>
-      </header>
+      <Sidebar/>
+      </div>
+      {/*code*/}
+     
      
     </div>
   );
