@@ -7,14 +7,9 @@ import Header from './components/Header';
 import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import SeccionPruebas from './components/SeccionPruebas';
 
 
-function hola(nombre){
-
-  var plantilla = (<h2> Hola bienvenido al curso de {nombre}</h2>);
-
-  return plantilla;
-}
 
 function App() {
   
@@ -25,6 +20,7 @@ function App() {
       <div className="center">
       <section id="content">
         <p>Todo el contenido aqui:</p>
+        <SeccionPruebas/>
         {/*code*/}
       </section>
       <Sidebar/>
