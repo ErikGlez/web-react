@@ -5,10 +5,13 @@ import Sidebar from './Sidebar';
 
 class Home extends Component {
     render() {
-
+        var buttonString = "Ir al blog"
         return (
             <div id="home">
-                <Slider/>
+                 <Slider title="Bienvenido al curso de React"
+                btn={buttonString}
+                size="slider-big"
+                />
                 <div className="center">
                 <section id="content">
                     <h2 className="subheader">Últimos articulos</h2>
