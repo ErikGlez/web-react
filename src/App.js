@@ -1,35 +1,21 @@
 import React from 'react';
 import './assets/CSS/App.css'; 
+import './assets/CSS/error-styles.css'; 
 
 // Importar componentes
-
-import Header from './components/Header';
-import Slider from './components/Slider';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
-import SeccionPruebas from './components/SeccionPruebas';
-
+import Router from './Router';
 
 
 function App() {
   
   return (
     <div className="App">
-      <Header/>
-      <Slider/>
-      <div className="center">
-      <section id="content">
-        <p>Todo el contenido aqui:</p>
-        <SeccionPruebas/>
-        {/*code*/}
-      </section>
-      <Sidebar/>
-      <div class="clearfix"></div>
-      </div> {/* fin div center */}
-      
-
-      <Footer/>
      
+        
+        <Router />
+        
+        {/*code*/}
+    
      
     </div>
   );

@@ -1,0 +1,255 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*ERROR PAGE*/
+
+.clearfix {
+  clear: both;
+  float: none;
+}
+
+.center {
+  width: 75%;
+  margin: 0px auto;
+}
+
+#error {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+#gift {
+  width: 40%;
+  float: left;
+}
+
+#gift img {
+  width: 100%;
+}
+
+#message {
+  float: right;
+  width: 60%;
+}
+
+.content {
+  font-family: Calibri, "Trebuchet MS", sans-serif;
+  color: #282455;
+  margin-left: 20px;
+  text-align: left;
+  margin-right: 20px;
+}
+#message h1 {
+  font-size: 110px;
+  line-height: 1px;
+}
+
+#message h2 {
+  font-size: 25px;
+}
+
+#message p {
+  font-size: 20px;
+}
+
+#message a {
+  margin-top: 10px;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  background-color: #282455;
+  height: 40px;
+  width: 90px;
+  line-height: 40px;
+  color: white;
+  font-size: 20px;
+  border-radius: 3px;
+  transition: all 300ms;
+}
+
+#message a:hover {
+  background-color: #4e4799;
+  color: white;
+  font-size: 21px;
+}
+
+
+/* Adaptaciones */
+
+@media (max-width: 1060px) {
+  #message h1 {
+    font-size: 100px;
+  }
+  #message h2 {
+    font-size: 22px;
+  }
+
+  #message p {
+    font-size: 18px;
+  }
+}
+
+
+@media (max-width: 1000px) {
+    #message h1 {
+      font-size: 85px;
+    }
+    #message h2 {
+      font-size: 18px;
+    }
+  
+    #message p {
+      font-size: 16px;
+    }
+  
+    #message a {
+      height: 35px;
+      line-height: 35px;
+      width: 85px;
+      font-size: 18px;
+    }
+  
+    #message a:hover {
+      font-size: 19px;
+    }
+  
+  }
+
+  @media (max-width: 870px) {
+    #message h1 {
+      font-size: 80px;
+      
+    }
+    #message h2 {
+      font-size: 18px;
+    }
+  
+    #message p {
+      font-size: 16px;
+    }
+  
+    #message a {
+      height: 30px;
+      line-height: 30px;
+      width: 70px;
+      font-size: 16px;
+    }
+  
+    #message a:hover {
+      font-size: 17px;
+    }
+  
+  }
+
+
+  @media (max-width: 820px) {
+    #message h1 {
+      font-size: 70px;
+    }
+
+    #message h2 {
+        font-size: 16px;
+      }
+    
+      #message p {
+        font-size: 14px;
+      }
+    
+      #message a {
+        height: 26px;
+        line-height: 26px;
+        width: 65px;
+        font-size: 15px;
+      }
+    
+      #message a:hover {
+        font-size: 16px;
+      }
+  
+  }
+
+  @media (max-width: 780px) {
+    #message h1 {
+        font-size: 60px;
+      }
+  
+      #message h2 {
+          font-size: 14px;
+        }
+      
+        #message p {
+          font-size: 12px;
+        }
+      
+        #message a {
+          height: 24px;
+          line-height: 24px;
+          width: 60px;
+          font-size: 14px;
+        }
+      
+        #message a:hover {
+          font-size: 15px;
+        }
+  
+  }
+
+
+  @media (max-width: 640px) {
+    #message h1 {
+        font-size: 50px;
+      }
+  
+      #message h2 {
+          font-size: 12px;
+        }
+      
+        #message p {
+          font-size: 10px;
+        }
+      
+        #message a {
+          height: 20px;
+          line-height: 20px;
+          width: 50px;
+          font-size: 12px;
+        }
+      
+        #message a:hover {
+          font-size: 13px;
+        }
+  
+  }
+
+
+@media (max-width: 500px) {
+  #message h1 {
+    font-size: 30px;
+  }
+  #message h2 {
+    font-size: 12px;
+  }
+
+  #message p {
+    font-size: 8px;
+  }
+
+  #message a {
+    height: 20px;
+    line-height: 20px;
+    width: 45px;
+    font-size: 10px;
+  }
+
+  #message a:hover {
+    font-size: 11px;
+  }
+
+  #error {
+    min-width: 200px;
+  }
+}

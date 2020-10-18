@@ -65,6 +65,10 @@ body{
   font-size: 18px;
 }
 
+.active{
+  border-bottom: 2px solid #19c7f7;
+}
+
 #menu ul{
   line-height: 85px;
   width: 60%;
