@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import Moment from 'react-moment'
 import 'moment/locale/es';
 import Global from '../Global';
@@ -19,7 +20,26 @@ class Articles extends Component {
 
 
     componentWillMount(){
-        this.getArticles();
+        var home = this.props.home;
+
+        if(home==='true'){
+            this.getLastArticles();
+        }else{
+            this.getArticles();
+        }
+
+       
+    }
+
+    // llamada ajax para obtener los ultimos 5 articulos
+    getLastArticles = ()=>{
+        axios.get(this.url+"articles/last").then(res =>{
+            this.setState({
+                articles: res.data.articles,
+                status: 'success'
+            });
+            
+        });
     }
 
     getArticles = ()=>{
@@ -36,9 +56,10 @@ class Articles extends Component {
 
         if(this.state.articles.length >= 1){
 
-            var listArticles = this.state.articles.map((article)=>{
+            var listArticles = this.state.articles.map((article,i)=>{
                 return (
-                    <article className="article-item" id="article-template">
+                    <article key={i} article={article}
+                    indice={i} className="article-item" id="article-template">
                     <div className="image-wrap">
                         {article.image !== null ? (
                              <img src={this.url+'get-image/'+article.image}
@@ -56,7 +77,7 @@ class Articles extends Component {
                     <span className="date">
                        <Moment locale="es" fromNow date={article.date}>  </Moment>
                     </span>
-                    <a href="article.html">Leer más</a>
+                    <Link to={'/blog/articulo/'+article._id}>Leer más</Link>
                     <div className="clearfix"></div>
                 </article>
                 );

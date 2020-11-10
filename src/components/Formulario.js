@@ -123,6 +123,7 @@ class Formulario extends Component {
                     </section>
                     <Sidebar
                         blog="false"
+                        buscar="true"
                     />
                 </div>
             </div>
