@@ -13,7 +13,8 @@ class CreateArticle extends Component{
 
     state = {
         article: {},
-        status: null
+        status: null,
+        selectedFile: null
     };
 
     changeState = ()=>{
@@ -41,8 +42,48 @@ class CreateArticle extends Component{
             if(res.data.article){
                 this.setState({
                     article: res.data.article,
-                    status: 'success'
+                    status: 'waiting'
                 })
+
+                 // subir la imagen
+                 if(this.state.selectedFile !== null){
+
+                    // sacar el id del articulo guardado
+                    var articleId = this.state.article._id;
+
+                    // crear form data y añadir fichero
+                    const formData = new FormData();
+
+                    formData.append(
+                        'file0',
+                        this.state.selectedFile,
+                        this.state.selectedFile.name
+                    );
+                    // peticion ajax    
+                    
+                    axios.post(this.url + 'upload-image/'+articleId, formData).then(res =>{
+                        if(res.data.article){
+                            this.setState({
+                                article: res.data.article,
+                                status: 'success'
+                            });
+                        }else{
+                            this.setState({
+                                article: res.data.article,
+                                status: 'failed'
+                            })
+                        }
+                    });
+
+
+
+                 }else{
+                    this.setState({
+                        status: 'success'
+                    })
+    
+                 }
+
                 
             }else{
                 this.setState({
@@ -53,6 +94,14 @@ class CreateArticle extends Component{
         });
 
     }
+
+    fileChange = (event)=>{
+        this.setState({
+            selectedFile: event.target.files[0]
+        });
+      
+    }
+
 
     render(){
 
@@ -72,12 +121,13 @@ class CreateArticle extends Component{
                         </div>
                         <div className="form-group">
                             <label htmlFor="content">Contenido</label>
-                            <textarea name="content" value="Esto es un contenido" ref={this.contentRef} onChange={this.changeState}> </textarea>
+                            <textarea name="content" 
+                             ref={this.contentRef} onChange={this.changeState}> </textarea>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="file0">Imagen</label>
-                            <input type="file" name="file0" /> 
+                            <input type="file" name="file0" onChange={this.fileChange} /> 
                         </div>
 
                         <input type="submit" value="Guardar" className="btn btn-success" />
