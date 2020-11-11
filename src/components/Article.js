@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../Global';
 import Sidebar from './Sidebar';
@@ -16,7 +16,7 @@ class Article extends Component {
         status: null
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.getArticle();
     }
 
@@ -64,14 +64,14 @@ class Article extends Component {
                                 {article.content}
                          </p>
 
-                         <a href="#" className="btn btn-danger">Eliminar </a>
-                         <a href="#" className="btn btn-update">Editar </a>
+                         <Link to="/blog" className="btn btn-danger">Eliminar </Link>
+                         <Link to="/blog" className="btn btn-update">Editar </Link>
                            
                             <div className="clearfix"></div>
                         </article>
                     }
 
-                    {!this.state.article && this.state.status == 'success' &&
+                    {!this.state.article && this.state.status === 'success' &&
                     <div id="article">
                         <h2 className="subheader">El articulo no existe</h2>
                         <p>

@@ -19,7 +19,7 @@ class Articles extends Component {
     }
 
 
-    componentWillMount(){
+    componentDidMount(){
         var home = this.props.home;
         var search = this.props.search;
         if(home==='true'){
@@ -68,7 +68,7 @@ class Articles extends Component {
                 articles: res.data.articles,
                 status: 'success'
             });
-             //console.log(this.state);
+            
         });
     }
 
@@ -76,10 +76,9 @@ class Articles extends Component {
 
         if(this.state.articles.length >= 1){
 
-            var listArticles = this.state.articles.map((article,i)=>{
+            var listArticles = this.state.articles.map((article)=>{
                 return (
-                    <article key={i} article={article}
-                    indice={i} className="article-item" id="article-template">
+                    <article key={article._id}  className="article-item" id="article-template">
                     <div className="image-wrap">
                         {article.image !== null ? (
                              <img src={this.url+'get-image/'+article.image}

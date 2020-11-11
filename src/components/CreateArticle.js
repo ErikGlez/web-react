@@ -7,25 +7,76 @@ import Sidebar from './Sidebar';
 // Validacion de formulario y alertas
 
 class CreateArticle extends Component{
+     url = Global.url;
+    titleRef = React.createRef();
+    contentRef = React.createRef();
+
+    state = {
+        article: {},
+        status: null
+    };
+
+    changeState = ()=>{
+        this.setState({
+            article: {
+                title:  this.titleRef.current.value,
+                content:  this.contentRef.current.value
+            }
+               
+        });
+
+        
+    }
+
+    saveArticle = (e) =>{
+        e.preventDefault();
+       
+        // Rellenar state con formulario
+        this.changeState();
+
+        
+        //hacer una petición http por post para guardar el articulo.
+        axios.post(this.url+'save', this.state.article).then(res =>{
+            
+            if(res.data.article){
+                this.setState({
+                    article: res.data.article,
+                    status: 'success'
+                })
+                
+            }else{
+                this.setState({
+                    status: 'failed'
+                });
+             }
+       
+        });
+
+    }
 
     render(){
+
+        if(this.state.status === 'success'){
+            return <Redirect to="/blog"></Redirect>
+        }
+
         return(
             <div className="center">
                 <section id="content">
                     <h1 className="subheader">Crear articulo</h1>
                     
-                    <form className="mid-form">
+                    <form className="mid-form" onSubmit={this.saveArticle}>
                         <div className="form-group">
-                            <labe htmlFor="title">Titulo</labe>
-                            <input type="text" name="title" /> 
+                            <label htmlFor="title">Titulo</label>
+                            <input type="text" name="title" ref={this.titleRef} onChange={this.changeState}/> 
                         </div>
                         <div className="form-group">
-                            <labe htmlFor="content">Contenido</labe>
-                            <textarea type="text" name="content"> </textarea>
+                            <label htmlFor="content">Contenido</label>
+                            <textarea name="content" value="Esto es un contenido" ref={this.contentRef} onChange={this.changeState}> </textarea>
                         </div>
 
                         <div className="form-group">
-                            <labe htmlFor="file0">Imagen</labe>
+                            <label htmlFor="file0">Imagen</label>
                             <input type="file" name="file0" /> 
                         </div>
 
