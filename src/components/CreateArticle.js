@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import SimpleReactValidator from 'simple-react-validator';
+import swal from 'sweetalert';
 import Global from '../Global';
 import Sidebar from './Sidebar';
 
@@ -17,6 +19,19 @@ class CreateArticle extends Component{
         selectedFile: null
     };
 
+   
+
+    constructor(props) {
+        super(props);
+        // Se carga el objeto para validar el formulario
+        // En el curso utiliza el componentWillMount
+        this.validator = new SimpleReactValidator({
+            messages:{
+                required: 'Este campo es requerido.'
+            }
+        });
+    }
+
     changeState = ()=>{
         this.setState({
             article: {
@@ -25,6 +40,10 @@ class CreateArticle extends Component{
             }
                
         });
+        
+        //mostrar mensajes de error cada que se cambia algo en el formulario
+        this.validator.showMessages();
+        this.forceUpdate();
 
         
     }
@@ -35,8 +54,8 @@ class CreateArticle extends Component{
         // Rellenar state con formulario
         this.changeState();
 
-        
-        //hacer una petición http por post para guardar el articulo.
+        if(this.validator.allValid()){
+            //hacer una petición http por post para guardar el articulo.
         axios.post(this.url+'save', this.state.article).then(res =>{
             
             if(res.data.article){
@@ -44,6 +63,12 @@ class CreateArticle extends Component{
                     article: res.data.article,
                     status: 'waiting'
                 })
+                 
+                swal(
+                    'Artículo creado',
+                    'El artículo se ha creado correctamente',
+                    'success'
+                )
 
                  // subir la imagen
                  if(this.state.selectedFile !== null){
@@ -93,6 +118,14 @@ class CreateArticle extends Component{
        
         });
 
+        }else{
+            this.setState({
+                status: 'failed'
+            });
+            this.validator.showMessages();
+            this.forceUpdate();
+        }
+        
     }
 
     fileChange = (event)=>{
@@ -118,11 +151,14 @@ class CreateArticle extends Component{
                         <div className="form-group">
                             <label htmlFor="title">Titulo</label>
                             <input type="text" name="title" ref={this.titleRef} onChange={this.changeState}/> 
+                            {this.validator.message('title',this.state.article.title,'required|alpha_num_space')} 
+
                         </div>
                         <div className="form-group">
                             <label htmlFor="content">Contenido</label>
                             <textarea name="content" 
                              ref={this.contentRef} onChange={this.changeState}> </textarea>
+                           {this.validator.message('content',this.state.article.content,'required')}
                         </div>
 
                         <div className="form-group">

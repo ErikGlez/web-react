@@ -345,6 +345,12 @@ textarea{
   font-weight: bold;
 }
 
+.thumb{
+  display: block;
+  width: 170px;
+  float: left;
+}
+
 .subheader{
   font-size: 38px;
   border-bottom: 1px solid #eee;

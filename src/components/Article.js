@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
 import Global from '../Global';
 import Sidebar from './Sidebar';
 import Moment from 'react-moment'
@@ -37,8 +38,40 @@ class Article extends Component {
         });
     }
 
-    render() {
+    deleteArticle = (id)=>{
 
+        swal({
+            title: "Estas seguro?",
+            text: "Sera eliminado, no recuperaras este articulo!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(this.url+'article/'+id).then(res =>{
+                    this.setState({
+                        article: res.data.article,
+                        status: 'deleted'
+        
+                    })
+               
+              swal('Artículo eliminado',
+              'El artículo se ha eliminado correctamente',{
+                icon: "success",
+              });
+            });
+            } else {
+              swal("Tranquilo tu artículo sigue posteado");
+            }
+          });
+         
+    }
+
+    render() {
+        if(this.state.status ==='deleted'){
+            return <Redirect to="/blog"></Redirect>
+        }
         var article = this.state.article;
         return (
             <div className="center">
@@ -64,8 +97,12 @@ class Article extends Component {
                                 {article.content}
                          </p>
 
-                         <Link to="/blog" className="btn btn-danger">Eliminar </Link>
-                         <Link to="/blog" className="btn btn-update">Editar </Link>
+                         <button onClick={
+                             ()=>{
+                                 this.deleteArticle(article._id)
+                             }
+                         } className="btn btn-danger">Eliminar </button>
+                         <Link to={'/blog/editar/'+article._id}className="btn btn-update">Editar </Link>
                            
                             <div className="clearfix"></div>
                         </article>

@@ -27,6 +27,9 @@ class Header extends Component {
                                 <li>
                                     <NavLink to="/formulario" activeClassName="active">Formulario</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/error" activeClassName="active">Error</NavLink>
+                                </li>
                                
                             </ul>
                         </nav>
